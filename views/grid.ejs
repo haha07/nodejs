@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+  
+    <link rel="stylesheet" type="text/css" href="/script/css/ui.jqgrid-bootstarp.css" />
+    <link rel="stylesheet" type="text/css" href="/script/css/ui.jqgrid.css" />
+	<script type="text/javascript" src="/script/js/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="/script/js/i18n/grid.locale-kr.js"></script>
+	<script type="text/javascript" src="/script/js/jquery.jqGrid.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $("#jqGrid").jqGrid({
+        url: '/grid',
+        datatype: "json",
+        type: "get",
+        colNames: ['순번','이름','모델번호','series'],
+        colModel: [
+            { name: 'id', key: true, width: 75 },
+            { name: 'name', width: 150 },
+            { name: 'modelnumber', width: 150 },
+            { name: 'series', width: 150 },
+        ],
+		viewrecords: true,
+        width: 780,
+        height: 250,
+        rowNum: 20,
+        pager: "#jqGridPager"
+    });
+});
+
+</script>
+
+</head>
+<body>
+<% include layout/header.ejs %>
+	<table id="jqGrid" ></table>
+    <div id="jqGridPager" ></div>
+<% include layout/foot.ejs %>
+</body>
+</html>
