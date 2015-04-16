@@ -6,12 +6,13 @@
 var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
+  , login = require('./routes/login')
   , http = require('http')
   , path = require('path')
   , fs = require('fs')
   , ejs = require('ejs')
   , db = require('mongojs').connect('test',['kim'])
-  ,connection  = require('express-myconnection')
+  , connection  = require('express-myconnection')
   , mysql = require('mysql');
 
 /*app에서 바로 사용할떄*/
@@ -89,6 +90,10 @@ app.get('/delete/:id' ,user.delet);
 
 app.get('/insert', user.ginsert);
 app.post('/insert', user.pinsert);
+
+app.get('/login', login.login);
+app.post('/login', login.plogin);
+app.get('/join', login.join);
 
 app.use(app.router);
 

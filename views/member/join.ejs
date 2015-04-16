@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>join Page</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>join Page</h1>
+    <hr />
+    <form method="post" action='/join>'>
+    <fieldset>
+    	<legend>join DATA</legend>
+    	<table>
+    		<tr>
+    			<td><label>Name</label></td>
+    			<td><input type="text" name="name" value="" placeholder="NAME" /></td>
+    		</tr>
+    		<tr>
+    			<td><label>Email</label></td>
+    			<td><input type="text" name="email" value="" placeholder="EMAIL" /></td>
+    		</tr>
+    		<tr>
+    			<td><label>PassWord</label></td>
+    			<td><input type="password" name="password" value="" placeholder="PASSWORD" /></td>
+    		</tr>
+    		<tr>
+    			<td><label>birth date</label></td>
+    			<td><input type="text" name="year" value="" placeholder="YEAR" /></td>
+    			<td><select name="month">
+				<option value="month">month</option><option value="1">1</option><option value="2">2</option>
+				</select></td>
+    			<td><input type="text" name="day" value="" placeholder="DAY" /></td>
+    		</tr>
+    		<tr>
+    			<td><label>TEL</label></td>
+    			<td><input type="tel" name="tel" value="" placeholder="TEL" /></td>
+    		</tr>
+    		<tr>
+    			<td><label>AGE</label></td>
+    			<td><input type="radio" name="age" value="men" />men</td>
+    			<td><input type="radio" name="age" value="women" />women</td>
+    		</tr>
+    		<tr>
+    			<td><label>memo</label></td>
+    			<td><textarea></textarea></td>
+    		</tr>
+    	</table>
+    	<input type="submit">
+    	</form>
+  </body>
+</html>
