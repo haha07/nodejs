@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-<!-- <meta charset="UTF-8"> -->
-<title>Insert title here</title>
-</head>
-<body>
-<% include layout/header.ejs %>
 
+<% include layout/header.ejs %>
+	<p>¿Ñ¸¶1</p>
 	<h1>LIST PAGE</h1>
 	<a href="/insert">insert data</a>
 	<hr/>
@@ -30,7 +24,12 @@
 		</tr>
 		<% }); %>
 	</table>
-	
+	<a href="/grid/" >go grid </a>
+	<hr />
+	<a href='javascript:fn_move();'>move</a>
+<script>
+function fn_move(){
+	alert("dddd");
+};
+</script>	
 <% include layout/foot.ejs %>	
-</body>
-</html>
