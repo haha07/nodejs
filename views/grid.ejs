@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
   
-    <link rel="stylesheet" type="text/css" href="/script/css/ui.jqgrid-bootstarp.css" />
+    <link rel="stylesheet" type="text/css" href="/script/jqueryui/jquery-ui.css" />
     <link rel="stylesheet" type="text/css" href="/script/css/ui.jqgrid.css" />
-	<script type="text/javascript" src="/script/js/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript" src="/script/js/i18n/grid.locale-kr.js"></script>
-	<script type="text/javascript" src="/script/js/jquery.jqGrid.min.js"></script>
+	<script src="/script/js/jquery-1.11.0.min.js"></script>
+	<script src="/script/js/i18n/grid.locale-kr.js"></script>
+	<script src="/script/js/jquery.jqGrid.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function () {
@@ -16,17 +16,35 @@ $(document).ready(function () {
         url: '/grid',
         datatype: "json",
         type: "get",
-        colNames: ['순번','이름','모델번호','series'],
+        colNames: ['id','name','modelnumber','series'],
         colModel: [
             { name: 'id', key: true, width: 75 },
             { name: 'name', width: 150 },
             { name: 'modelnumber', width: 150 },
             { name: 'series', width: 150 },
         ],
-		viewrecords: true,
         width: 780,
         height: 250,
-        rowNum: 20,
+        viewrecords : true,
+        rowNum: '10',
+        jsonReader:{ 
+        	repeatitems:false,
+        	id:"id",
+        	root : function (obj) { return obj.list;},
+        	total : function (obj){
+        			if(!obj || !obj.list || !obj.list.length){
+        				return 0;
+        			}
+        			return obj.list[0].total / 10 + 1;
+        		},
+        	records : function (obj){
+        			if(!obj || !obj.list || !obj.list.length){
+        				return 0;
+        			}
+        			return obj.list[0].total
+        		}
+        },
+        recordtext:"보기{0}~{1} / 총 {2}건",
         pager: "#jqGridPager"
     });
 });
@@ -35,9 +53,9 @@ $(document).ready(function () {
 
 </head>
 <body>
-<% include layout/header.ejs %>
+
 	<table id="jqGrid" ></table>
     <div id="jqGridPager" ></div>
-<% include layout/foot.ejs %>
+
 </body>
 </html>

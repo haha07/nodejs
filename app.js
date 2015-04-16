@@ -20,7 +20,7 @@ var client = mysql.createConnection({
 	port : '3306',
 	user : 'root',
 	password : '1234',
-	database : 'test'
+	database : 'test2'
 });
 
 /*db.kim.find(function(error, data){
@@ -48,7 +48,7 @@ app.use(
 			port : '3306',
 			user : 'root',
 			password : '1234',
-			database : 'test'
+			database : 'test2'
 		},'request')
 );
 // development only
@@ -61,7 +61,7 @@ app.get('/', routes.index);
 /*app.get('/', function (req,res){
 	//파일을 읽습니다.
 	fs.readFile('list.html','utf8', function(error,data){
-		client.query('SELECT * FROM productss',function(error,results){
+		client.query('SELECT * FROM product',function(error,results){
 			res.send(ejs.render(data,{
 				data:results
 			}));
@@ -71,7 +71,7 @@ app.get('/', routes.index);
 
 
 /*app.get('/grid', function(req,res){
-	client.query('SELECT * FROM productss',function(error,results){
+	client.query('SELECT * FROM product',function(error,results){
 		console.log(results);
 	});
 });*/
@@ -82,44 +82,17 @@ app.get('/users', user.main);
 
 app.get('/list', user.list);
 
-app.get('/edit/:id', function(req,res){
-	client.query('select * from productss where id=?',[req.param('id')],function(error,result){
-		res.render("edit",{
-				data:result[0]
-			});
-	});
-});
-app.post('/edit/:id', function(req,res){
-	var body = req.body;
-	client.query('update productss set name=?,modelnumber=?,series=? where id=?',[
-	       body.name,body.modelnumber,body.series,req.param('id')],function(){
-		res.redirect('/list');
-	});
-});
+app.get('/edit/:id', user.gedit);
+app.post('/edit/:id', user.pedit);
 
-/*user부분에서 처리하고 싶으나 id값을 어떻게 보내야 될지 모르겠음*/
-/*app.get('/delete/:id', user.delet);*/
-app.get('/delete/:id' , function(req, res){
-	client.query('delete from productss where id = ?',[req.param('id')],function(){
-		res.redirect('/list');
-	});
-});
+app.get('/delete/:id' ,user.delet);
 
 app.get('/insert', user.ginsert);
-/*app.post('insert', user.pinsert);*/
-app.post('/insert', function(req,res){
-	var body = req.body;
-	client.query('insert into productss (name,modelnumber,series) values (?,?,?)',[
-	           body.name,body.modelnumber,body.series],function(){
-		res.redirect('/list');
-	});
-});
-
-
+app.post('/insert', user.pinsert);
 
 app.use(app.router);
 
 http.createServer(app).listen(app.get('port'), function(){
-	
+
   console.log('Express server listening on port ' + app.get('port'));
 });
