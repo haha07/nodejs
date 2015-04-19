@@ -12,7 +12,7 @@ exports.grid = function(req, res){
 	/*res.setEncoding('utf-8');*/
 	req.getConnection(function(error,connection){
 		connection.query('SELECT * FROM product',function(error,results){
-			console.log(results);
+			console.log(req.session.email);
 			res.render("grid",{
 				list:results
 			});
@@ -22,15 +22,19 @@ exports.grid = function(req, res){
 
 
 exports.list = function(req, res){
-	/*res.setEncoding('utf-8');*/
-	req.getConnection(function(error,connection){
-		connection.query('SELECT * FROM product',function(error,results){
-			/*console.log(results);*/
-			res.render("list",{
-				data:results
+	if(req.session.email != "" && req.session.email != undefined) {
+		console.log(req.session.email);
+		req.getConnection(function(error,connection){
+			connection.query('SELECT * FROM product',function(error,results){
+				res.render("list",{
+					data:results
+				});
 			});
 		});
-	});
+	}
+	else {
+		res.redirect('/login');
+	}
 };
 
 exports.delet = function(req, res){
