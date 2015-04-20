@@ -11,14 +11,14 @@ var sess = {};
 exports.plogin = function(req, res){
 	var body = req.body;
 	req.getConnection(function(error,connection){
-		connection.query('SELECT email, name, password, level FROM member LIMIT 0,1',function(error,results){
-			console.log(results);
-			for(var i in results){
-				if(body.email == results[i].email && body.password == results[i].password ){
+		connection.query('SELECT email, name, password, level FROM member WHERE email=? AND password=? LIMIT 0,1', 
+			[body.email,body.password], 
+			function(error,results){
+				if(results.length > 0){
 					sess = req.session;
-					sess.email = results[i].email;
-					sess.name = results[i].name;
-					sess.level = results[i].level;
+					sess.email = results[0].email;
+					sess.name = results[0].name;
+					sess.level = results[0].level;
 					if(sess.level > 0) {
 						res.render('index');
 					}
@@ -26,9 +26,9 @@ exports.plogin = function(req, res){
 						res.redirect('/admin');
 					}
 				} else {
+					console.log('dd');
 					res.redirect('/login');
 				}
-			}
 		});
 	});
 };
@@ -40,4 +40,15 @@ exports.logout = function(req, res){
 
 exports.join = function(req, res){
 	res.render('member/join');
+};
+
+exports.pedit = function(req,res){
+	var id = req.params.id;
+	var body = req.body;
+	req.getConnection(function(error,connection){
+		connection.query('update product set name=?,modelnumber=?,series=? where id=?',[
+		         body.name,body.modelnumber,body.series,id],function(){
+		            res.redirect('/list');
+		  });
+	});
 };
