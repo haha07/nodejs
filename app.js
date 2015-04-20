@@ -105,6 +105,7 @@ app.get('/join', login.join);
 
 <<<<<<< HEAD
 =======
+app.post('/join', login.pjoin);
 app.get('/logout', login.logout);
 
 app.get('/admin', admin.admin);

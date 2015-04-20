@@ -46,15 +46,18 @@ exports.plogin = function(req, res){
 					res.redirect('/login');
 				}
 >>>>>>> f608846596e03b50ccb5ef9be9041d7e4bd086b2
+
 		});
 	});
 };
 
 <<<<<<< HEAD
+
 exports.join = function(req, res){
 	res.render('member/join');
 };
 =======
+
 exports.logout = function(req, res){
 	req.session.destroy();
 	res.redirect('/login');
@@ -75,3 +78,14 @@ exports.pedit = function(req,res){
 	});
 };
 >>>>>>> f608846596e03b50ccb5ef9be9041d7e4bd086b2
+
+exports.pjoin = function(req,res){
+	var body = req.body;
+	req.getConnection(function(error,connection){
+		connection.query("insert into member(email,name,password,level,sex,birthday,memo) values (?,?,?,?,?,?,?)"
+				,[body.email,body.name,body.password,'1','남','22',body.memo]
+		,function(){
+				res.redirect('/login');
+		});
+	});
+};
