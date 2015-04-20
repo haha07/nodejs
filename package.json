@@ -10,8 +10,6 @@
     "ejs": "*",
     "mysql":"*",
     "mongojs":"*",
-    "express-myconnection":"*",
-    "express-session":"*",
-    "passport","*"
+    "express-myconnection":"*"
   }
 }
