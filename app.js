@@ -7,10 +7,7 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , login = require('./routes/login')
-<<<<<<< HEAD
-=======
   , admin = require('./routes/admin')
->>>>>>> f608846596e03b50ccb5ef9be9041d7e4bd086b2
   , http = require('http')
   , path = require('path')
   , fs = require('fs')
@@ -61,15 +58,6 @@ app.use(
 		},'request')
 );
 
-<<<<<<< HEAD
-app.use(function(req, res, next) {
-	if (req.session.email) {
-		res.locals.email = req.session.email;
-	} else {
-		res.locals.email = null;
-	}
-});
-=======
 //app.use(function(req, res, next) {
 //	if (req.session.email) {
 //		res.locals.email = req.session.email;
@@ -77,7 +65,6 @@ app.use(function(req, res, next) {
 //		res.locals.email = null;
 //	}
 //});
->>>>>>> f608846596e03b50ccb5ef9be9041d7e4bd086b2
 
 // development only
 if ('development' == app.get('env')) {
@@ -102,15 +89,11 @@ app.post('/insert', user.pinsert);
 app.get('/login', login.login);
 app.post('/login', login.plogin);
 app.get('/join', login.join);
-
-<<<<<<< HEAD
-=======
 app.post('/join', login.pjoin);
 app.get('/logout', login.logout);
 
 app.get('/admin', admin.admin);
 
->>>>>>> f608846596e03b50ccb5ef9be9041d7e4bd086b2
 
 app.use(app.router);
 
