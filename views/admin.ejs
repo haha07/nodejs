@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>관리자 페이지</title>
+    <link rel='stylesheet' href='/stylesheets/admin.css' />
+  </head>
+  <body>
+    <h1 class="hidden">관리자 페이지</h1>
+    <div class="header">
+	    <div class="content-wrapper">
+	    	<ul class="member-info">
+	    		<li><%= ses.name %>님 반갑습니다</li>
+	    		<li><a href="/logout" target="_self">로그아웃</a></li>
+	    	</ul>
+    	</div>
+   	</div>
+   	<div class="main">
+	   	<div class="content-wrapper">
+	   		<div class="submenu">
+		   		<ul>
+		   			<li>회원관리</li>
+		   			<li>글 관리</li>
+		   		</ul>
+	   		</div>
+	   		<div class="content">
+		   		<ul>
+		   			<% data.forEach(function (item, index) { %>
+		   			<li><%= item.email %></li>
+		   			<li><%= item.name %></li>
+		   			<% }); %>
+		   		</ul>
+	   		</div>
+	   	</div>
+   	</div>
+   	<div class="footer">
+    	
+   	</div>
+  </body>
+</html>
