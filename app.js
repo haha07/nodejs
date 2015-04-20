@@ -11,6 +11,7 @@ var express = require('express')
   , path = require('path')
   , fs = require('fs')
   , ejs = require('ejs')
+  , session = require('express-session')
   , db = require('mongojs').connect('test',['kim'])
   , connection  = require('express-myconnection')
   , mysql = require('mysql');
@@ -39,6 +40,9 @@ app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 
+app.use(express.cookieParser());
+app.use(express.session({secret: 'secret key'}));
+/*app.use(session({secret: 'secret key'}));*/
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/script', express.static(__dirname +'/jqgrid'));
 
@@ -52,31 +56,21 @@ app.use(
 			database : 'test2'
 		},'request')
 );
+
+app.use(function(req, res, next) {
+	if (req.session.email) {
+		res.locals.email = req.session.email;
+	} else {
+		res.locals.email = null;
+	}
+});
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
 app.get('/', routes.index);
-
-/*app.get('/', function (req,res){
-	//파일을 읽습니다.
-	fs.readFile('list.html','utf8', function(error,data){
-		client.query('SELECT * FROM product',function(error,results){
-			res.send(ejs.render(data,{
-				data:results
-			}));
-		});
-	});
-});*/
-
-
-/*app.get('/grid', function(req,res){
-	client.query('SELECT * FROM product',function(error,results){
-		console.log(results);
-	});
-});*/
-
 app.get('/grid', user.grid);
 
 app.get('/users', user.main);
@@ -94,6 +88,7 @@ app.post('/insert', user.pinsert);
 app.get('/login', login.login);
 app.post('/login', login.plogin);
 app.get('/join', login.join);
+
 
 app.use(app.router);
 
