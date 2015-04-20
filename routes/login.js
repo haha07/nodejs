@@ -11,22 +11,6 @@ var sess = {};
 exports.plogin = function(req, res){
 	var body = req.body;
 	req.getConnection(function(error,connection){
-<<<<<<< HEAD
-		connection.query('SELECT * FROM member',function(error,results){
-			/*row = results.length;*/
-			/*console.log(row);*/
-			/*console.log(results[0].email);*/
-			for(var i in results){
-				if(body.email == results[i].email){
-					sess = req.session;
-					sess.email = body.email;
-					console.log(sess);
-					res.render('index');
-				}else{
-					res.redirect('/login');
-				}
-			}
-=======
 		connection.query('SELECT email, name, password, level FROM member WHERE email=? AND password=? LIMIT 0,1', 
 			[body.email,body.password], 
 			function(error,results){
@@ -45,18 +29,15 @@ exports.plogin = function(req, res){
 					console.log('dd');
 					res.redirect('/login');
 				}
->>>>>>> f608846596e03b50ccb5ef9be9041d7e4bd086b2
 
 		});
 	});
 };
 
-<<<<<<< HEAD
 
 exports.join = function(req, res){
 	res.render('member/join');
 };
-=======
 
 exports.logout = function(req, res){
 	req.session.destroy();
@@ -77,7 +58,6 @@ exports.pedit = function(req,res){
 		  });
 	});
 };
->>>>>>> f608846596e03b50ccb5ef9be9041d7e4bd086b2
 
 exports.pjoin = function(req,res){
 	var body = req.body;
