@@ -90,7 +90,9 @@ app.get('/login', login.login);
 app.post('/login', login.plogin);
 app.get('/join', login.join);
 app.post('/join', login.pjoin);
+
 app.get('/logout', login.logout);
+app.get('/logoutMain', routes.index);
 
 app.get('/admin', admin.admin);
 

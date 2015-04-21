@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<% include layout/header.ejs %>
   
     <link rel="stylesheet" type="text/css" href="/script/jqueryui/jquery-ui.css" />
     <link rel="stylesheet" type="text/css" href="/script/css/ui.jqgrid.css" />
@@ -52,10 +48,26 @@ $(document).ready(function () {
 </script>
 
 </head>
+
 <body>
 
+	<section id="inner-headline">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<ul class="breadcrumb">
+					<li><a href="/"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
+					<li><a href="#">Women</a><i class="icon-angle-right"></i></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	</section>
+	
+	
 	<table id="jqGrid" ></table>
     <div id="jqGridPager" ></div>
 
 </body>
-</html>
+
+<% include layout/foot.ejs %>
