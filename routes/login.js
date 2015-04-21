@@ -20,7 +20,9 @@ exports.plogin = function(req, res){
 					sess.name = results[0].name;
 					sess.level = results[0].level;
 					if(sess.level > 0) {
-						res.render('index');
+						res.render('index',{
+							email:sess.email
+						});
 					}
 					else {
 						res.redirect('/admin');
