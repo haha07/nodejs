@@ -20,7 +20,7 @@
 <script src="js/jquery.flexslider.js"></script>
 <script src="js/animate.js"></script>
 <script src="js/custom.js"></script>
-
+<script src="mainjs/index.js"></script>
 <!-- Theme skin -->
 <link href="skins/default.css" rel="stylesheet" />
 </head>
@@ -37,7 +37,7 @@
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav" style="margin: 20px; float: right;">
                         /*<% if(locals.email == null) { %> 
-						  <a href="/login/">login</a>
+						  <a  onclick="fn_login();">login</a>
 						  <a href="/join/">join</a>
 						  <% }else{ %>
 						  	<p><%= email %>님 환영합니다.</p>
