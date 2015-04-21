@@ -30,7 +30,6 @@ exports.plogin = function(req, res){
 				} else {
 					console.log('dd');
 					res.redirect('/login');
-					/*res.redirect('/');*/
 				}
 
 		});

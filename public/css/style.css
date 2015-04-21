@@ -1974,3 +1974,12 @@ article img.pull-right, article .align-right{
 @media (max-width: 360px) {
 
 }
+
+
+.container .board {width:100%;}
+.container .board th {border:1px solid #DDD;text-align:center;}
+.container .board td {border:1px solid #DDD;text-align:center;}
+
+
+
+

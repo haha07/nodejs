@@ -1,6 +1,4 @@
-
 <% include layout/header.ejs %>
-
 	<section id="inner-headline">
 	<div class="container">
 		<div class="row">
@@ -14,34 +12,35 @@
 		</div>
 	</div>
 	</section>
-	
-	<p>둘기</p>
-	<h1>LIST PAGE</h1>
-	<a href="/insert">insert data</a>
-	<hr/>
-	<table width="100%" border="1">
-		<tr>
-			<th>delete</th>
-			<th>edit</th>
-			<th>id</th>
-			<th>name</th>
-			<th>model number</th>
-			<th>series</th>
-		</tr>
-		<% data.forEach(function (item, index) { %>
-		<tr>
-			<td><a href="/delete/<%= item.id %>">delete </a></td>
-			<td><a href="/edit/<%= item.id %>">edit </a></td>
-			<td><%= item.id %></td>
-			<td><%= item.name %></td>
-			<td><%= item.modelnumber %></td>
-			<td><%= item.series %></td>
-		</tr>
-		<% }); %>
-	</table>
-	<a href="/grid/" >go grid </a>
-	<hr />
-	<a href='javascript:fn_move();'>move�̵�</a>
+	<div class="container">
+		<p>둘기</p>
+		<h1>LIST PAGE</h1>
+		<hr/>
+		<table class="board">
+			<tr>
+				<th>delete</th>
+				<th>edit</th>
+				<th>id</th>
+				<th>name</th>
+				<th>model number</th>
+				<th>series</th>
+			</tr>
+			<% data.forEach(function (item, index) { %>
+			<tr>
+				<td><a href="/delete/<%= item.id %>">delete </a></td>
+				<td><a href="/edit/<%= item.id %>">edit </a></td>
+				<td><%= item.id %></td>
+				<td><%= item.name %></td>
+				<td><%= item.modelnumber %></td>
+				<td><%= item.series %></td>
+			</tr>
+			<% }); %>
+		</table>
+		<a href="/insert">글쓰기</a>
+		<hr />
+		<a href="/grid/" >go grid</a><span> | </span>
+		<a href='javascript:fn_move();'>move</a>
+	</div>
 <script>
 function fn_move(){
 	alert("dddd");

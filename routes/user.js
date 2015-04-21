@@ -23,7 +23,7 @@ exports.grid = function(req, res){
 
 exports.list = function(req, res){
 	if(req.session.email != "" && req.session.email != undefined) {
-		console.log(req.session.email);
+		console.log(require('url').parse(req.url).path);
 		req.getConnection(function(error,connection){
 			connection.query('SELECT * FROM product',function(error,results){
 				res.render("list",{
