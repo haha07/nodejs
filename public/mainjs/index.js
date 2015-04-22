@@ -10,9 +10,8 @@ function fn_login(){
 	 $('.contact').show();
 	 };
 };
-
 function fn_submit(){
- 	if($("#email").val() != null && $("#password").val() != ""){
+ 	if($("#email").val() != "" && $("#password").val() != ""){
  	$("#loginform").submit();
  	}else{
  	alert("값을 입력하여주세요");

@@ -20,9 +20,7 @@ exports.plogin = function(req, res){
 					sess.name = results[0].name;
 					sess.level = results[0].level;
 					if(sess.level > 0) {
-						res.render('index',{
-							email:sess.email
-						});
+						res.render('index');
 					}
 					else {
 						res.redirect('/admin');
@@ -44,7 +42,7 @@ exports.join = function(req, res){
 
 exports.logout = function(req, res){
 	req.session.destroy();
-	res.redirect('/login');
+	res.redirect('/');
 };
 
 exports.join = function(req, res){
