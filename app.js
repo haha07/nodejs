@@ -12,6 +12,7 @@ var express = require('express')
   , path = require('path')
   , fs = require('fs')
   , ejs = require('ejs')
+  , url = require('url')
   , session = require('express-session')
   , db = require('mongojs').connect('test',['kim'])
   , connection  = require('express-myconnection')
@@ -44,8 +45,18 @@ app.use(express.methodOverride());
 app.use(express.cookieParser());
 app.use(express.session({secret: 'secret key'}));
 /*app.use(session({secret: 'secret key'}));*/
+app.use(function(req, res, next){
+    res.locals.session = req.session;
+    var pathname = url.parse(req.url).pathname;
+    var arr = pathname.split("/");
+    res.locals.session.path = arr[1];
+    res.locals.session.path1 = arr[2];
+    next();
+ });
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/script', express.static(__dirname +'/jqgrid'));
+app.use('/public', express.static(__dirname +'/public'));
 
 /*render에서 사용할때*/
 app.use(
@@ -92,9 +103,12 @@ app.get('/join', login.join);
 app.post('/join', login.pjoin);
 
 app.get('/logout', login.logout);
-app.get('/logoutMain', routes.index);
+app.get('/logoutMain', login.logout);
 
 app.get('/admin', admin.admin);
+
+app.get('/Men/list' ,user.list);
+app.get('/women/grid', user.grid);
 
 
 app.use(app.router);

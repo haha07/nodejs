@@ -23,7 +23,11 @@ exports.grid = function(req, res){
 
 exports.list = function(req, res){
 	if(req.session.email != "" && req.session.email != undefined) {
+<<<<<<< HEAD
 		console.log(require('url').parse(req.url).path);
+=======
+		console.log(req.session);
+>>>>>>> bb013f98172cdfa47c29f19b036b97db49a0e76d
 		req.getConnection(function(error,connection){
 			connection.query('SELECT * FROM product',function(error,results){
 				res.render("list",{
@@ -33,7 +37,8 @@ exports.list = function(req, res){
 		});
 	}
 	else {
-		res.redirect('/login');
+		res.redirect('/');
+		/*indexjs.fn_login();*/
 	}
 };
 

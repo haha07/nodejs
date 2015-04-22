@@ -3,26 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <title>dulgi</title>
-   <link href="css/bootstrap.min.css" rel="stylesheet" />
-	<link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
-	<link href="css/jcarousel.css" rel="stylesheet" />
-	<link href="css/flexslider.css" rel="stylesheet" />
-	<link href="css/style.css" rel="stylesheet" />
+   <link href="/public/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/public/css/fancybox/jquery.fancybox.css" rel="stylesheet">
+	<link href="/public/css/jcarousel.css" rel="stylesheet" />
+	<link href="/public/css/flexslider.css" rel="stylesheet" />
+	<link href="/public/css/style.css" rel="stylesheet" />
 
-<script src="js/jquery.js"></script>
-<script src="js/jquery.easing.1.3.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.fancybox.pack.js"></script>
-<script src="js/jquery.fancybox-media.js"></script>
-<script src="js/google-code-prettify/prettify.js"></script>
-<script src="js/portfolio/jquery.quicksand.js"></script>
-<script src="js/portfolio/setting.js"></script>
-<script src="js/jquery.flexslider.js"></script>
-<script src="js/animate.js"></script>
-<script src="js/custom.js"></script>
-<script src="mainjs/index.js"></script>
+<script src="/public/js/jquery.js"></script>
+<script src="/public/js/jquery.easing.1.3.js"></script>
+<script src="/public/js/bootstrap.min.js"></script>
+<script src="/public/js/jquery.fancybox.pack.js"></script>
+<script src="/public/js/jquery.fancybox-media.js"></script>
+<script src="/public/js/google-code-prettify/prettify.js"></script>
+<script src="/public/js/portfolio/jquery.quicksand.js"></script>
+<script src="/public/js/portfolio/setting.js"></script>
+<script src="/public/js/jquery.flexslider.js"></script>
+<script src="/public/js/animate.js"></script>
+<script src="/public/js/custom.js"></script>
+<script src="/public/mainjs/index.js"></script>
 <!-- Theme skin -->
-<link href="skins/default.css" rel="stylesheet" />
+<link href="/public/skins/default.css" rel="stylesheet" />
 </head>
 	<div class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -36,16 +36,32 @@
                 </div>
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav" style="margin: 20px; float: right;">
+<<<<<<< HEAD
+=======
+                        /*<% if(locals.session.email == null) { %> 
+						  <a  onclick="fn_login();">login</a>
+						  <a href="/join/">join</a>
+						  <% }else{ %>
+						  	<span><%= session.email %>님 환영합니다.</span>
+						  	<a href="/logout">logout</a>
+						  <% } %>*/
+>>>>>>> bb013f98172cdfa47c29f19b036b97db49a0e76d
                         <li class="active"><a href="/">Home</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Men <b class=" icon-angle-down"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/list">Economy</a></li>
-                                <li><a href="/list">IT</a></li>
-								<li><a href="/list">Financial</a></li>
+                                <li><a href="/Men/list">Economy</a></li>
+                                <li><a href="/Men/list">IT</a></li>
+								<li><a href="/Men/list">Financial</a></li>
                             </ul>
                         </li>
-                        <li><a href="/grid">Women</a></li>
+                        <li><a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Women <b class=" icon-angle-down"></b></a>
+                        	<ul class="dropdown-menu">
+                                <li><a href="/women/grid">Economy</a></li>
+                                <li><a href="/Men/list">IT</a></li>
+								<li><a href="/Men/list">Financial</a></li>
+                            </ul>
+                        </li>
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="contact.html">Contact</a></li>
                         <% if(locals.email == null) { %> 
