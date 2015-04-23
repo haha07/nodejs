@@ -99,6 +99,7 @@ app.post('/insert', user.pinsert);
 
 app.get('/login', login.login);
 app.post('/login', login.plogin);
+
 app.get('/join', login.join);
 app.post('/join', login.pjoin);
 
@@ -107,8 +108,18 @@ app.get('/logoutMain', login.logout);
 
 app.get('/admin', admin.admin);
 
-app.get('/Business/list' ,user.list);
-app.get('/Education/grid', user.grid);
+app.get('/Angel/Angel', user.grid);
+app.get('/Angel/Wing', user.grid);
+app.get('/Angel/Event', user.grid);
+
+app.get('/Business/Nation' ,user.list);
+app.get('/Business/Economy' ,user.list);
+app.get('/Business/TalK' ,user.list);
+
+app.get('/Education/Problem', user.grid);
+app.get('/Education/Common', user.grid);
+app.get('/Education/Healing', user.grid);
+
 
 app.post('/upload',user.upload);
 

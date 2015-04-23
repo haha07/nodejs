@@ -1,7 +1,6 @@
 
 
 function fn_login(){
-	
 	 $.get('/login', function (data) {
 		 /*var div = "<div class='contact'></div>"
 		$('.container').append(div);*/
@@ -12,6 +11,15 @@ function fn_login(){
 	 $('.contact').show();
 	 };
 };
+function fn_join(){
+	$.get('/join', function(data){
+		var html = data;
+		$("#joinContent").html(html);
+	});
+	if($("#joinContent").css("display") == 'none'){
+		$("#joinContent").show();
+	};
+};
 function fn_submit(){
  	if($("#email").val() != "" && $("#password").val() != ""){
  	$("#loginform").submit();
@@ -21,10 +29,12 @@ function fn_submit(){
  };
  function fn_cancel(){
  	$('.contact').css('display','none');
-	/*$(location).attr('href','/');*/
+ 	/*$('#joinContent').css('display','none');*/
+	$(location).attr('href','/');
  };
  
  function fn_cancelx(){
  	$('.contact').css('display','none');
+ 	/*$('#joinContent').css('display','none');*/
 	/*$(location).attr('href','/');*/
  };
