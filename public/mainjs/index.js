@@ -3,8 +3,8 @@
 function fn_login(){
 	
 	 $.get('/login', function (data) {
-		 var div = "<div class='contact'></div>"
-		$('.container').append(div);
+		 /*var div = "<div class='contact'></div>"
+		$('.container').append(div);*/
          var html = data;
          $('.contact').html(html);
 	 });

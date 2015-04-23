@@ -82,3 +82,12 @@ exports.pedit = function(req,res){
 	});
 };
 
+var fs = require('fs');
+exports.upload = function(req,res){
+	fs.readFile(req.files.uploadFile.path, function(error, data){
+		var filePath = __dirname + "\\files\\" + req.files.uploadFile.name;
+		fs.writeFile(filePath, data, function(error){
+			res.redirect("/");
+		});
+	});
+};

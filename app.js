@@ -110,6 +110,7 @@ app.get('/admin', admin.admin);
 app.get('/Men/list' ,user.list);
 app.get('/women/grid', user.grid);
 
+app.post('/upload',user.upload);
 
 app.use(app.router);
 
