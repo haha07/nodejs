@@ -44,7 +44,7 @@ h1,h2, h3, h4, h5, h6 {
 ==================================== */
 
 .container {
-	padding:0 20px 0 20px;
+	padding:20px;
 	position:relative;
 }
 
@@ -196,6 +196,9 @@ header .nav .caret {
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
   background-color:  #fff;
+  border-color:#68A4C4;
+  border-top:1px solid #68A4C4;
+  border-left:1px solid #68A4C4;
 }	
 	
 
@@ -267,6 +270,9 @@ header ul.nav li ul li a {
 
 .navbar .nav li .dropdown-menu {
 	z-index:2000;
+	border:1px solid #68A4C4;
+	margin:-1px 0 0 0;
+	padding:0;
 }
 
 header ul.nav li ul {
@@ -292,10 +298,10 @@ header ul.nav li ul li ul {
 }
 
 
-
 ul.nav li.dropdown a {
-	z-index:1000;
+	z-index:2010;
 	display:block;
+	border-color:#DDD;
 }
 
  select.selectmenu {
@@ -1974,3 +1980,13 @@ article img.pull-right, article .align-right{
 @media (max-width: 360px) {
 
 }
+
+.list-board {width:100%}
+.list-board th,
+.list-board td {border:1px solid #BBB;text-align:center}
+
+.insert-table td {text-align:right;padding:5px}
+.insert-table input {border:1px solid #AAA}
+.file-upload {width:50%;float:left;border:1px solid #AAA}
+.file-upload input {width:100%;background:#FFF}
+.file-submit {height:24px;line-height:16px;margin-left:5px}
