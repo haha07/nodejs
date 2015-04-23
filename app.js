@@ -107,8 +107,8 @@ app.get('/logoutMain', login.logout);
 
 app.get('/admin', admin.admin);
 
-app.get('/Men/list' ,user.list);
-app.get('/women/grid', user.grid);
+app.get('/Business/list' ,user.list);
+app.get('/Education/grid', user.grid);
 
 app.post('/upload',user.upload);
 
