@@ -34,3 +34,35 @@
 </div>
 </div>
 
+<script>
+$(document).ready(function(){
+	
+	$("#email").focusout(function(){
+		
+		if($("#email").val() == ""){
+			$("#email").css('border','1px red solid');
+		}else{
+			$("#email").css('border-color','');
+		}
+	});
+	$("#password").focusout(function(){
+		if($("#password").val() == ""){
+			$("#password").css('border','1px red solid');
+		}else{
+			$("#password").css('border-color','');
+		}
+	});
+	
+	$("#email").focus(function(){
+		if($("#email").css('border-color') != "rgb(204, 204, 204)"){
+			$("#email").css('border-color','#68A4C4');
+		};
+	});
+	
+	$("#password").focus(function(){
+		if($("#password").css('border-color') != "rgb(204, 204, 204)"){
+			$("#password").css('border-color','#68A4C4');
+		};
+	});
+});
+</script>

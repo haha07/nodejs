@@ -61,16 +61,22 @@
                         </li>
                         <li><a href="blog.html">QnA</a></li>
                         <!-- <li><a href="contact.html">Issue</a></li> -->
-     					 <% if(locals.session.email == null) { %> 
-						  <li><a href="javascript:void(0);" onclick="fn_login();">login</a></li>
-						  <li><a href="javascript:void(0);" onclick="fn_join();" class="br-none">join</a></li>
-						  <% }else{ %>
-						  	<li><span><%= session.email %>님 환영합니다</span></li>
-						  	<li><a href="/logout" class="br-none">logout</a></li>
-						  <% } %>
                     </ul>
                 </div>
+                    <div style="float : right; padding-right : 30px;">
+     					 <% if(locals.session.email == null) { %> 
+     					 	<% if(locals.session.path == 'join') { %>
+						  			<p><a href="javascript:void(0);" >Login</a>
+						  			<a href="/join" class="br-none">Join</a></p>
+						  		<% }else{ %>
+						  			<p><a href="javascript:void(0);" onclick="fn_login();">Login</a>
+						  			<a href="/join" class="br-none">Join</a></p>
+						  		<% } %>
+						  <% }else{ %>
+						  	<p><span><%= session.email %>님 환영합니다</span>
+						  	<a href="/logout" class="br-none">Logout</a></p>
+						  <% } %>
+					</div>
             </div>
         </div>
 	<div class="contact"></div>
-	<div id="joinContent"></div>

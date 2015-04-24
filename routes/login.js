@@ -26,8 +26,7 @@ exports.plogin = function(req, res){
 						res.redirect('/admin');
 					}
 				} else {
-					console.log('dd');
-					res.redirect('/login');
+					res.redirect('/');
 					/*res.redirect('/');*/
 				}
 
@@ -62,11 +61,12 @@ exports.pedit = function(req,res){
 
 exports.pjoin = function(req,res){
 	var body = req.body;
+	console.log(body);
 	req.getConnection(function(error,connection){
 		connection.query("insert into member(email,name,password,level,sex,birthday,memo) values (?,?,?,?,?,?,?)"
-				,[body.email,body.name,body.password,'1','남','22',body.memo]
+				,[body.email,body.name,body.password,'1',body.sex,body.birthday,body.memo]
 		,function(){
-				res.redirect('/login');
+				res.redirect('/');
 		});
 	});
 };

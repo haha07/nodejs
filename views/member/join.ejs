@@ -1,15 +1,15 @@
 
+<% include ../layout/header.ejs %>
 
-
-<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true" style="overflow-y: auto;">
+<! -- <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true" style="overflow-y: auto;"> 
 <div class="modal-dialog" >
   <div class="modal-content" >
       <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="fn_cancelx();">×</button>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="fn_cancelJoinX();">×</button>
           <h1 class="text-center">Join</h1>
       </div>
       <div class="modal-body">
-          <form class="form col-md-12 center-block" id="loginform" method="post" action="/login">
+          <form class="form col-md-12 center-block" id="joinForm" method="post" action="/join">
             <div class="form-group">
               <input type="text" class="form-control input-lg" placeholder="Email" name="email" id="email">
             </div>
@@ -18,18 +18,19 @@
             </div>
             <div class="form-group">
 			  <label>NAME</label>       
-              <p><input type="text" name="name" value="" placeholder="NAME" /></p>
+              <p><input type="text" name="name" value="" placeholder="NAME" id="name" /></p>
             </div>
              <div class="form-group">
               <label>Birth Date</label>
-    			<p><input type="text" name="year" value="" placeholder="YEAR" />
-    			<select name="month">
+    			<p><input type="text" name="year" value="" placeholder="YEAR" id="year" />
+    			<select name="month" id="month">
 				<option value="month">month</option><option value="1">1</option><option value="2">2</option>
 				<option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
 				<option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>
 				<option value="11">11</option><option value="12">12</option>
 				</select>
-    			<input type="text" name="day" value="" placeholder="DAY" /></p>
+    			<input type="text" name="day" value="" placeholder="DAY" id="day" /></p>
+    			<input type="hidden" name="birthday" value="" id="birthday" />
             </div>
              <div class="form-group">
               <label>TEL</label>
@@ -37,8 +38,8 @@
             </div>
             <div class="form-group">
             	<label>SEX</label>
-            	<p><input type="radio" name="men" value="men" />Men
-    			<input type="radio" name="women" value="women" />Women</p>
+            	<p><input type="radio" name="sex" value="men" />Men
+    			<input type="radio" name="sex" value="women" />Women</p>
             </div>
             <div class="form-group">
               <label>MEMO</label>
@@ -46,17 +47,16 @@
             </div>
           </form>
             <div class="form-group">
-              <button class="btn btn-primary btn-lg btn-block" id="login" style=" background-color: #3276b1;"  onclick="fn_submit();">join</button>
-              <span class="pull-right"><a href="/join">Register</a></span><span><a href="#">Need help?</a></span>
+              <button class="btn btn-primary btn-lg btn-block" id="login" style=" background-color: #3276b1;"  onclick="fn_submitJoin();">join</button>
+              <!-- <span class="pull-right"><a href="/join">Register</a></span><span><a href="#">Need help?</a></span> -->
             </div>
       </div>
-      
       <div class="modal-footer">
           <div class="col-md-12">
-          <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="fn_cancel();">Cancel</button>
+          <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="fn_cancelJoin();">Cancel</button>
 		  </div>	
       </div>
   </div>
 </div>
-</div>
+<!-- </div> -->
 
