@@ -58,6 +58,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/script', express.static(__dirname +'/jqgrid'));
 app.use('/public', express.static(__dirname +'/public'));
 
+
 /*render에서 사용할때*/
 app.use(
 		connection(mysql,{
@@ -106,7 +107,9 @@ app.post('/join', login.pjoin);
 app.get('/logout', login.logout);
 app.get('/logoutMain', login.logout);
 
-app.get('/admin', admin.admin);
+app.get('/admin/memberList', admin.memberList);
+app.get('/admin/modMainImg', admin.modMainImg);
+app.post('/admin/uploadMainImg',admin.uploadMainImg);
 
 app.get('/Angel/Angel', user.grid);
 app.get('/Angel/Wing', user.grid);
@@ -120,8 +123,8 @@ app.get('/Education/Problem', user.grid);
 app.get('/Education/Common', user.grid);
 app.get('/Education/Healing', user.grid);
 
-
 app.post('/upload',user.upload);
+
 
 app.use(app.router);
 

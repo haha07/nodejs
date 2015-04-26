@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>관리자 페이지</title>
+    <link rel='stylesheet' href='/stylesheets/admin.css' />
+  </head>
+  <body>
+    <h1 class="hidden">관리자 페이지</h1>
+    <div class="header">
+	    <div class="content-wrapper">
+	    	<ul class="member-info">
+	    		<li><%= ses.name %>님 반갑습니다</li>
+	    		<li><a href="/logout" target="_self">로그아웃</a></li>
+	    	</ul>
+    	</div>
+   	</div>
+   	<div class="main">
+	   	<div class="content-wrapper">
+	   		<div class="submenu">
+		   		<ul>
+		   			<li><a href="admin/memberList">회원관리</a></li>
+		   			<li class="selected"><a href="admin/modMainImg">메인이미지관리</a></li>
+		   		</ul>
+	   		</div>
+	   		<div class="content">
+	   			<table class="main-imgs">
+	   				<colgroup>
+	   					<col style="width:50px" />
+	   					<col style="width:200px" />
+	   					<col style="width:250px" />
+	   					<col style="width:*" />
+	   				</colgroup>
+	   				<thead>
+		   				<tr>
+		   					<th>순서</th>
+		   					<th>파일명</th>
+		   					<th>제목</th>
+		   					<th>내용</th>
+		   				</tr>
+	   				</thead>
+	   				<tbody>
+	   					<% data.forEach(function (item, index) { %>
+		   				<tr>
+		   					<th><%= item.idx %></th>
+		   					<th><%= item.file_name %></th>
+		   					<th><%= item.title %></th>
+		   					<th><%= item.paragraph %></th>
+		   				</tr>
+		   				<% }); %>
+	   				</tbody>
+	   			</table>
+	   			<div>
+	   				<form method="post" action="/admin/uploadMainImg" enctype="multipart/form-data">
+	   					<input type="text" name="title" placeholder="제목" />
+	   					<input type="text" name="paragraph" placeholder="내용" />
+		   				<input type="file" name="uploadFile" />
+		   				<input type="submit" name="upload" value="파일올리기" class="file-submit" />
+	   				</form>
+	   			</div>
+	   		</div>
+	   	</div>
+   	</div>
+   	<div class="footer">
+    	
+   	</div>
+  </body>
+</html>

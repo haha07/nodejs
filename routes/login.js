@@ -23,7 +23,7 @@ exports.plogin = function(req, res){
 						res.render('index');
 					}
 					else {
-						res.redirect('/admin');
+						res.redirect('/admin/memberList');
 					}
 				} else {
 					res.redirect('/');
