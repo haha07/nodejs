@@ -18,8 +18,8 @@
 	   	<div class="content-wrapper">
 	   		<div class="submenu">
 		   		<ul>
-		   			<li><a href="admin/memberList">회원관리</a></li>
-		   			<li class="selected"><a href="admin/modMainImg">메인이미지관리</a></li>
+		   			<a href="/admin/memberList"><li>회원관리</li></a>
+		   			<a href="/admin/modMainImg"><li class="selected">메인이미지관리</li></a>
 		   		</ul>
 	   		</div>
 	   		<div class="content">
@@ -29,6 +29,7 @@
 	   					<col style="width:200px" />
 	   					<col style="width:250px" />
 	   					<col style="width:*" />
+	   					<col style="width:100px" />
 	   				</colgroup>
 	   				<thead>
 		   				<tr>
@@ -36,32 +37,86 @@
 		   					<th>파일명</th>
 		   					<th>제목</th>
 		   					<th>내용</th>
+		   					<th>수정</th>
 		   				</tr>
 	   				</thead>
 	   				<tbody>
 	   					<% data.forEach(function (item, index) { %>
+	   					<form name="frm<%= index %>"method="post" action="/admin/modifyMainImg">
 		   				<tr>
-		   					<th><%= item.idx %></th>
-		   					<th><%= item.file_name %></th>
-		   					<th><%= item.title %></th>
-		   					<th><%= item.paragraph %></th>
+		   					<td class="center">
+		   						<input type="hidden" value="<%= item.idx %>" />
+		   						<%= index + 1 %>
+		   					</td>
+		   					<td><%= item.file_name %></td>
+		   					<td>
+		   						<input type="text" value="<%= item.title %>" name="title" class="inp-mod" />
+		   						<span class="cont-mod" id="titleMod<%= index %>"><%= item.title %></span>
+		   					</td>
+		   					<td>
+		   						<input type="text" value="<%= item.paragraph %>" name="paragraph" class="inp-mod" />
+		   						<span class="cont-mod" id="paragraphMod<%= index %>"><%= item.paragraph %></span>
+		   					</td>
+		   					<td class="center">
+		   						<span id="btn-mod<%= index %>" class="btn-mod" onclick="modifyImage(frm<%= index %>,<%= index %>)">수정</span>
+		   						<span id="btn-del<%= index %>" class="btn-mod" onclick="deleteImage(<%= item.idx %>)">삭제</span>
+		   						<span id="btn-sub<%= index %>" class="btn-submit" onclick="submitImage(<%= item.idx %>)">확인</span>
+		   						<span id="btn-cle<%= index %>" class="btn-submit" onclick="cancelMod(frm<%= index %>,<%= index %>)">취소</span>
+		   					</td>
 		   				</tr>
+		   				</form>
 		   				<% }); %>
+		   				<tr>
+		   					<td colspan="5"></td>
+		   				</tr>
 	   				</tbody>
+	   				<tfoot>
+		   				<tr>
+		   					<th colspan="5">
+								<form method="post" action="/admin/uploadMainImg" enctype="multipart/form-data">
+									<input type="file" name="uploadFile" />
+				   					<input type="text" name="title" placeholder="제목" />
+				   					<input type="text" name="paragraph" placeholder="내용" />
+					   				<input type="submit" name="upload" value="파일올리기" class="file-submit" />
+				   				</form>
+							</th>
+		   				</tr>
+	   				</tfoot>
 	   			</table>
-	   			<div>
-	   				<form method="post" action="/admin/uploadMainImg" enctype="multipart/form-data">
-	   					<input type="text" name="title" placeholder="제목" />
-	   					<input type="text" name="paragraph" placeholder="내용" />
-		   				<input type="file" name="uploadFile" />
-		   				<input type="submit" name="upload" value="파일올리기" class="file-submit" />
-	   				</form>
-	   			</div>
 	   		</div>
 	   	</div>
    	</div>
    	<div class="footer">
     	
    	</div>
+	<script type="text/javascript">
+		function modifyImage(frm,idx) {
+			frm.title.style.display = 'inline';
+			frm.paragraph.style.display = 'inline';
+			document.getElementById("titleMod"+idx).style.display = 'none';
+			document.getElementById("paragraphMod"+idx).style.display = 'none';
+			document.getElementById("btn-mod"+idx).style.display = 'none';
+			document.getElementById("btn-del"+idx).style.display = 'none';
+			document.getElementById("btn-sub"+idx).style.display = 'inline';
+			document.getElementById("btn-cle"+idx).style.display = 'inline';
+		}
+		
+		function cancelMod(frm,idx) {
+			frm.title.style.display = 'none';
+			frm.paragraph.style.display = 'none';
+			document.getElementById("titleMod"+idx).style.display = 'inline';
+			document.getElementById("paragraphMod"+idx).style.display = 'inline';
+			document.getElementById("btn-mod"+idx).style.display = 'inline';
+			document.getElementById("btn-del"+idx).style.display = 'inline';
+			document.getElementById("btn-sub"+idx).style.display = 'none';
+			document.getElementById("btn-cle"+idx).style.display = 'none';
+		}
+   		
+   		function deleteImage(idx) {
+   			if(confirm('삭제하시겠습니까?')) {
+   				location.href="/admin/deleteMainImg/" + idx;
+   			}
+   		}
+   	</script>
   </body>
 </html>
