@@ -11,10 +11,11 @@ exports.grid = function(req, res){
 	/*res.header("Content-Type", "application/json; charset=utf-8");*/
 	/*res.setEncoding('utf-8');*/
 	req.getConnection(function(error,connection){
-		connection.query('SELECT * FROM product',function(error,results){
-			console.log(req.session.email);
+		connection.query('select count(*) as total from product; select * from product',
+				function(error,rows){
+			console.log(rows[1]);
 			res.render("grid",{
-				list:results
+				rows:rows
 			});
 		});
 	});
