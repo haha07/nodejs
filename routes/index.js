@@ -4,5 +4,11 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+	req.getConnection(function(error,connection){
+		connection.query('SELECT * FROM images',function(error,results){
+			res.render("index",{
+				data:results
+			});
+		});
+	});
 };
