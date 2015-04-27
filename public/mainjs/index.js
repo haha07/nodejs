@@ -82,3 +82,26 @@ function fn_submit(){
 		 	alert("값을 입력하여주세요");
 	 }
  };
+ 
+ function fn_nameTest(){
+	 var testname = $("#name").val();
+	 if(testname == ""){
+		 alert("name를 입력해주세요");
+		 return ;
+	 }
+	 $.ajax({
+		cache:false,
+		data:{name:testname},
+		type:"POST",
+		url : "/nameTest",
+		success:function(result){
+			 if(result == '' || result == null){
+					alert("name를 사용하여도 됩니다.") 
+				 }else{
+					 alert("다른 name를 입력하여 주십시오.")
+					 $("#name").val("");
+				 }
+		}
+	 });
+	 
+ };

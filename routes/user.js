@@ -7,16 +7,33 @@ exports.main = function(req, res){
   res.send("respond with a resource");
 };
 
-exports.grid = function(req, res){
-	/*res.header("Content-Type", "application/json; charset=utf-8");*/
-	/*res.setEncoding('utf-8');*/
+/*exports.grid = function(req, res){
+	res.header("Content-Type", "application/json; charset=utf-8");
+	res.setEncoding('utf-8');
 	req.getConnection(function(error,connection){
 		connection.query('select count(*) as total from product; select * from product',
 				function(error,rows){
 			console.log(rows[1]);
+			var rowss = { row:rows[1]};
+			console.log(rowss);
 			res.render("grid",{
-				rows:rows
+				row:rowss
 			});
+		});
+	});
+};*/
+
+exports.grid = function(req,res){
+	res.render("grid");
+};
+
+exports.pgrid = function(req,res){
+	console.log("우왁");
+	req.getConnection(function(error,connection){
+		connection.query('select * from product' , function(error , results){
+			var row = { row:results};
+			console.log(row);
+			res.send(row);
 		});
 	});
 };
@@ -86,7 +103,7 @@ exports.pedit = function(req,res){
 var fs = require('fs');
 exports.upload = function(req,res){
 	fs.readFile(req.files.uploadFile.path, function(error, data){
-		var filePath = __dirname + "\\files\\" + req.files.uploadFile.name;
+		var filePath =process.cwd() + '/public/img/slides/' + req.files.uploadFile.name;
 		fs.writeFile(filePath, data, function(error){
 			res.redirect("/");
 		});

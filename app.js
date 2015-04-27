@@ -57,6 +57,7 @@ app.use(function(req, res, next){
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/script', express.static(__dirname +'/jqgrid'));
 app.use('/public', express.static(__dirname +'/public'));
+app.use('/slides', express.static(__dirname + '/public/img/slides'));
 
 
 /*render에서 사용할때*/
@@ -86,6 +87,7 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/grid', user.grid);
+app.post('/pgrid', user.pgrid);
 
 app.get('/users', user.main);
 
@@ -126,6 +128,7 @@ app.get('/Education/Healing', user.grid);
 
 app.post('/upload',user.upload);
 
+app.post('/nameTest',login.nameTest);
 
 app.use(app.router);
 

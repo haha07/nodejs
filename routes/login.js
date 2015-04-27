@@ -20,7 +20,7 @@ exports.plogin = function(req, res){
 					sess.name = results[0].name;
 					sess.level = results[0].level;
 					if(sess.level > 0) {
-						res.render('index');
+						res.redirect('/');
 					}
 					else {
 						res.redirect('/admin/memberList');
@@ -67,6 +67,17 @@ exports.pjoin = function(req,res){
 				,[body.email,body.name,body.password,'1',body.sex,body.birthday,body.memo]
 		,function(){
 				res.redirect('/');
+		});
+	});
+};
+
+exports.nameTest = function(req,res){
+	var name = req.body.name;
+	console.log(name);
+	req.getConnection(function(error,connection){
+		connection.query('select name from member where name=?',[name],function(error,result){
+			console.log(result);
+			res.send(result);
 		});
 	});
 };
