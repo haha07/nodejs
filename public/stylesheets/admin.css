@@ -1,20 +1,34 @@
+@charset "utf-8";
+
 /* admin page */
+*{-webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;}
 body {margin:0;padding:0}
 ul,dl {list-style-type:none;margin:0;padding:0}
+
 .hidden {display:none !important;}
 .header {height:80px;position:relative;border-bottom:1px solid #DDD}
+.center {text-align:center !important}
+
 .member-info {float:right}
 .member-info li {height:20px;float:left;padding:0 10px;border-right:1px solid #AAA;line-height:17px}
 .member-info li:last-child {border:none}
 
 .content-wrapper {width:1000px;margin:0 auto;overflow:auto;}
-.submenu {width:150px;float:left;margin:20px 0 0 0}
-.submenu li {padding:10px;border-bottom:1px solid #EEE;cursor:pointer}
-.submenu li:hover {background-color:#744;}
-.submenu li a {color:#333;font-weight:bold;text-decoration:none}
-.submenu li:hover {color:#FFF}
+.submenu {width:150px;float:left;margin:25px 0 0 0;border:1px solid #DDD;border-radius:5px;padding:5px 0;}
+.submenu li {margin:1px 0;padding:10px;cursor:pointer;font-size:14px;font-family:"맑은 고딕",Malgun Gothic,Arial,"돋움",Dotum;}
+.submenu a {color:#333;font-weight:bold;text-decoration:none}
+.submenu li:hover {background-color:#744;color:#FFF;}
 .submenu .selected {background-color:#744;}
-.submenu .selected a {color:#FFF}
-.content {margin-left:150px;padding:25px 20px 20px 20px}
+.submenu .selected {color:#FFF}
+.content {margin-left:150px;padding:25px 20px 20px;font-size:12px}
+
+.main-imgs {border-collapse:collapse}
+.main-imgs th {padding:10px;border:1px solid #DDD}
+.main-imgs td {padding:10px;border-top:1px solid #DDD;border-bottom:1px solid #DDD;text-align:left}
+.main-imgs .btn-mod {padding:5px;border:1px solid #EEE;border-radius:5px;cursor:pointer}
+.main-imgs .inp-mod {display:none;width:100%}
+.main-imgs .btn-submit {padding:5px;border:1px solid #EEE;border-radius:5px;cursor:pointer;display:none}
 
 .footer {width:100%;height:80px;position:absolute;bottom:0;border-top:1px solid #DDD;background-color:#FAFAFA;}

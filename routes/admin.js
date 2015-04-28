@@ -39,12 +39,20 @@ exports.uploadMainImg = function(req,res){
 		fs.writeFile(filePath, data, function(error){
 			var body = req.body;
 			req.getConnection(function(error,connection){
-				connection.query('INSERT INTO images (file_name,title,paragraph) values (?,?,?)',
+				connection.query('INSERT INTO images (file_name,title,paragraph) VALUES (?,?,?)',
 					[req.files.uploadFile.name,body.title,body.paragraph],function(){
 					res.redirect('admin/modMainImg');
 				});
 			});
-			res.redirect("admin/modMainImg");
+			res.redirect("/admin/modMainImg");
+		});
+	});
+};
+
+exports.deleteMainImg = function(req,res){
+	req.getConnection(function(error,connection){
+		connection.query('DELETE FROM images WHERE idx = ?',[req.params.idx],function(){
+			res.redirect('/admin/modMainImg');
 		});
 	});
 };
