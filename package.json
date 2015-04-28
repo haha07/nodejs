@@ -12,6 +12,7 @@
     "mongojs":"*",
     "express-myconnection":"*",
     "express-session":"*",
-    "passport","*"
+    "passport":"0.2.1",
+    "passport-facebook":"*"
   }
 }
