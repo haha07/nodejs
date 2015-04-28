@@ -72,3 +72,16 @@ exports.deleteMainImg = function(req,res){
 		});
 	});
 };
+
+exports.updataMainImg = function(req,res){
+	var idx = req.body.idx;
+	var title = req.body.title;
+	var paragraph = req.body.paragraph;
+	console.log(req.body);
+	req.getConnection(function(error,connection){
+		connection.query('UPDATE images SET title = ?,paragraph = ? WHERE idx=?',
+				[title,paragraph,idx],function(){
+						res.send('1');
+		});
+	});
+};

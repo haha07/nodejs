@@ -115,6 +115,7 @@ app.get('/admin/memberList', admin.memberList);
 app.get('/admin/modMainImg', admin.modMainImg);
 app.post('/admin/uploadMainImg',admin.uploadMainImg);
 app.get('/admin/deleteMainImg/:idx',admin.deleteMainImg);
+app.post('/admin/updataMainImg', admin.updataMainImg);
 
 app.get('/Angel/Angel', user.grid);
 app.get('/Angel/Wing', user.grid);

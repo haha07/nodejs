@@ -3,6 +3,7 @@
   <head>
     <title>관리자 페이지</title>
     <link rel='stylesheet' href='/public/stylesheets/admin.css' />
+    <script src="/script/js/jquery-1.11.0.min.js"></script>
   </head>
   <body>
     <h1 class="hidden">관리자 페이지</h1>
@@ -50,17 +51,17 @@
 		   					</td>
 		   					<td><%= item.file_name %></td>
 		   					<td>
-		   						<input type="text" value="<%= item.title %>" name="title" class="inp-mod" />
+		   						<input type="text" value="<%= item.title %>" name="title" class="inp-mod" id="modTitle<%= index %>" />
 		   						<span class="cont-mod" id="titleMod<%= index %>"><%= item.title %></span>
 		   					</td>
 		   					<td>
-		   						<input type="text" value="<%= item.paragraph %>" name="paragraph" class="inp-mod" />
+		   						<input type="text" value="<%= item.paragraph %>" name="paragraph" class="inp-mod" id="modParagraph<%= index %>" />
 		   						<span class="cont-mod" id="paragraphMod<%= index %>"><%= item.paragraph %></span>
 		   					</td>
 		   					<td class="center">
 		   						<span id="btn-mod<%= index %>" class="btn-mod" onclick="modifyImage(frm<%= index %>,<%= index %>)">수정</span>
 		   						<span id="btn-del<%= index %>" class="btn-mod" onclick="deleteImage(<%= item.idx %>)">삭제</span>
-		   						<span id="btn-sub<%= index %>" class="btn-submit" onclick="submitImage(<%= item.idx %>)">확인</span>
+		   						<span id="btn-sub<%= index %>" class="btn-submit" onclick="submitImage(frm<%= index %>,<%= item.idx %>,<%= index %>)">확인</span>
 		   						<span id="btn-cle<%= index %>" class="btn-submit" onclick="cancelMod(frm<%= index %>,<%= index %>)">취소</span>
 		   					</td>
 		   				</tr>
@@ -115,6 +116,28 @@
    		function deleteImage(idx) {
    			if(confirm('삭제하시겠습니까?')) {
    				location.href="/admin/deleteMainImg/" + idx;
+   			}
+   		}
+   		
+   		function submitImage(frm,idx,index) {
+   			var title = $("#modTitle"+index).val(); 
+   			var paragraph = $("#modParagraph"+index).val();
+ 			var param = { title:title , paragraph:paragraph, idx:idx};
+   			if(confirm('수정하시겠습니까?')){
+   				 $.ajax({
+					cache:false,
+					data:param,
+					type:"POST",
+					url : "/admin/updataMainImg",
+					success:function(result){
+						 if(result == 1){
+								 $(location).attr('href','/admin/modMainImg'); 
+							 }else{
+								 alert("다른 name를 입력하여 주십시오.")
+								 $("#name").val("");
+							 }
+					}
+				 });
    			}
    		}
    	</script>
