@@ -28,12 +28,17 @@ exports.grid = function(req,res){
 };
 
 exports.pgrid = function(req,res){
-	console.log("우왁");
 	req.getConnection(function(error,connection){
-		connection.query('select * from product' , function(error , results){
-			var row = { row:results};
-			console.log(row);
-			res.send(row);
+		connection.query('select * from product' , function(error , data){
+			var results = [];
+			results.push({page:1});
+			results.push({total:2});
+			results.push({records:12});
+			var rows = {rows:data};
+			results.push(rows);
+			console.log(results);
+			res.send(data);
+			/*res.send(total);*/
 		});
 	});
 };

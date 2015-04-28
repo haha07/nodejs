@@ -86,8 +86,9 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+
 app.get('/grid', user.grid);
-app.post('/pgrid', user.pgrid);
+app.get('/pgrid', user.pgrid);
 
 app.get('/users', user.main);
 

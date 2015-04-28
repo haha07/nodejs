@@ -23,28 +23,19 @@ $(document).ready(function () {
         height: 250,
         viewrecords : true,
         rowNum: '10',
-        jsonReader:{ 
-        	repeatitems:true,
-        	id:"id",
-        	root : "row",
-        	total : function (obj){
-        	
-        			if(!obj || !obj.list || !obj.list.length){
-        				return 0;
-        			}
-        			return obj.list[0].total / 10 + 1;
-        		},
-        	records : function (obj){
-        			if(!obj || !obj.list || !obj.list.length){
-        				return 0;
-        			}
-        			return obj.list[0].total
-        		},
-        		page : "1"
+        rowList:[10,20,30],	
+        jsonReader:{
+        	 repeatitems: false,
+			    id: "id",
+			    root:  'rows',
+			    records: 'records',
+			    page: 'page',
+			    total: 'total'
         },
         recordtext:"보기 {0}~{1} / 총{2}",
         pager: "#jqGridPager"
     });
+    jQuery("#jqGrid").jqGrid('navGrid','#jqGridPager',{edit:false,add:false,del:false});
 });
 
 </script>
