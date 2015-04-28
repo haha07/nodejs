@@ -3,8 +3,7 @@ exports.memberList = function(req, res){
 		req.getConnection(function(error,connection){
 			connection.query('SELECT * FROM member',function(error,results){
 				res.render("admin/memberList",{
-					data:results,
-					ses:req.session
+					data:results
 				});
 			});
 		});
@@ -20,8 +19,7 @@ exports.modMainImg = function(req, res){
 		req.getConnection(function(error,connection){
 			connection.query('SELECT * FROM images',function(error,results){
 				res.render("admin/modMainImg",{
-					data:results,
-					ses:req.session
+					data:results
 				});
 			});
 		});
@@ -32,10 +30,10 @@ exports.modMainImg = function(req, res){
 };
 
 
-exports.uploadMainImg = function(req,res){
+/*exports.uploadMainImg = function(req,res){
 	var fs = require('fs');
 	fs.readFile(req.files.uploadFile.path, function(error, data){
-		var filePath = "/slides/" + req.files.uploadFile.name;
+		var filePath =process.cwd() + '/public/img/slides/' + req.files.uploadFile.name;
 		fs.writeFile(filePath, data, function(error){
 			var body = req.body;
 			req.getConnection(function(error,connection){
@@ -46,6 +44,24 @@ exports.uploadMainImg = function(req,res){
 			});
 			res.redirect("/admin/modMainImg");
 		});
+	});
+};*/
+
+exports.uploadMainImg = function(req,res){
+	var fs = require('fs');
+	fs.readFile(req.files.uploadFile.path, function(error, data){
+		var filePath =process.cwd() + '/public/img/slides/' + req.files.uploadFile.name;
+		fs.writeFile(filePath, data, function(error){
+			
+		});
+	});
+	var body = req.body;
+	req.getConnection(function(error,connection){
+		connection.query('INSERT INTO images (file_name,title,paragraph) VALUES (?,?,?)',
+				[req.files.uploadFile.name,body.title,body.paragraph],function(){
+					res.redirect("/admin/modMainImg");
+		});
+		
 	});
 };
 
