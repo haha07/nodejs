@@ -3,8 +3,9 @@
     <link rel="stylesheet" type="text/css" href="/script/jqueryui/jquery-ui.css" />
     <link rel="stylesheet" type="text/css" href="/script/css/ui.jqgrid.css" />
 	<script src="/script/js/jquery-1.11.0.min.js"></script>
-	<script src="/script/js/i18n/grid.locale-kr.js"></script>
+	<script src="/script/jqueryui/jquery-ui.min.js"></script>
 	<script src="/script/js/jquery.jqGrid.min.js"></script>
+	<script src="/script/js/i18n/grid.locale-kr.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function () {
@@ -23,19 +24,39 @@ $(document).ready(function () {
         height: 250,
         viewrecords : true,
         rowNum: '10',
+        sortorder:"asc",
+        sortable:false,
         rowList:[10,20,30],	
+        loadonce:false,
+        regional :'kr',
         jsonReader:{
         	 repeatitems: false,
 			    id: "id",
-			    root:  'rows',
-			    records: 'records',
-			    page: 'page',
-			    total: 'total'
+			    root:  function(obj) { return obj; },
+			    total: function(obj) {
+			    	if(!obj || !obj.length){
+			    		return 0;
+			    	}
+			    	return obj[0].total / 10 + 1;
+			    },
+			    records : function(obj) {
+			    	if(!obj || !obj.length){
+			    		return 0;
+			    	}
+			    	return obj[0].total;
+			    }
+			    
+			    
         },
-        recordtext:"보기 {0}~{1} / 총{2}",
-        pager: "#jqGridPager"
+        recordtext:"보기 {0}~{1} / 총 {2}",
+        pager: "#jqGridPager",
+        onCellSelect: function(rowid, iCol){      
+         var list = jQuery("#jqGrid").getRowData(rowid);
+         list.name; 
+         list.modelnumber;
+}
     });
-    jQuery("#jqGrid").jqGrid('navGrid','#jqGridPager',{edit:false,add:false,del:false});
+    $("#jqGrid").jqGrid('navGrid','#jqGridPager',{edit:false,add:false,del:false , search:false});
 });
 
 </script>
@@ -49,7 +70,7 @@ $(document).ready(function () {
 	<div class="container">
 	<table id="jqGrid" ></table>
     <div id="jqGridPager" ></div>
-	<div>
+	</div>
 	
 </body>
 

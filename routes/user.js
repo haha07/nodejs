@@ -27,21 +27,48 @@ exports.grid = function(req,res){
 	res.render("grid");
 };
 
-exports.pgrid = function(req,res){
+/*exports.pgrid = function(req,res){
+	var rows = req.query.rows;
+	var page = req.query.page;
+	var start = (page-1)*rows;
+	var end = page*rows;
+	if(start == 0){
+		 start = 0;
+	}else{
+		start = start;
+	}
+	console.log(start);
+	console.log(end);
 	req.getConnection(function(error,connection){
-		connection.query('select * from product' , function(error , data){
-			var results = [];
-			results.push({page:1});
-			results.push({total:2});
-			results.push({records:12});
-			var rows = {rows:data};
-			results.push(rows);
-			console.log(results);
+		connection.query('select * from product limit ?,?' , 
+				[start , end] , function(error , data){
+			res.send(data);
+			res.send(total);
+		});
+	});
+};*/
+
+exports.pgrid = function(req,res){
+	var rows = req.query.rows;
+	var page = req.query.page;
+	var start = (page-1)*rows;
+	var end = page*rows;
+	if(start == 0){
+		 start = 0;
+	}else{
+		start = start;
+	}
+	console.log(start);
+	console.log(end);
+	req.getConnection(function(error,connection){
+		connection.query('select t.*, (select count(*) from product) as total from product t limit ?,?' , 
+				[start , end] , function(error , data){
 			res.send(data);
 			/*res.send(total);*/
 		});
 	});
 };
+
 
 
 exports.list = function(req, res){
