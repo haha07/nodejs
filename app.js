@@ -5,6 +5,10 @@
 
 var express = require('express')
   , routes = require('./routes')
+  , angelwing = require('./routes/angelwing')
+  , business = require('./routes/business')
+  , education = require('./routes/education')
+  , freestyle = require('./routes/freestyle')
   , user = require('./routes/user')
   , login = require('./routes/login')
   , admin = require('./routes/admin')
@@ -117,17 +121,23 @@ app.post('/admin/uploadMainImg',admin.uploadMainImg);
 app.get('/admin/deleteMainImg/:idx',admin.deleteMainImg);
 app.post('/admin/updataMainImg', admin.updataMainImg);
 
-app.get('/Angel/Angel', user.grid);
-app.get('/Angel/Wing', user.grid);
-app.get('/Angel/Event', user.grid);
+app.get('/AngelWing/Angel', angelwing.list);
+app.get('/angelwing/angledetail' ,angelwing.content);
 
-app.get('/Business/Nation' ,user.list);
-app.get('/Business/Economy' ,user.list);
-app.get('/Business/TalK' ,user.list);
+app.get('/AngelWing/Wing', angelwing.grid);
+app.get('/AngelWing/Event', angelwing.grid);
 
-app.get('/Education/Problem', user.grid);
-app.get('/Education/Common', user.grid);
-app.get('/Education/Healing', user.grid);
+app.get('/Business/Nation' , business.list);
+app.get('/Business/Economy' ,business.list);
+app.get('/Business/TalK' , business.list);
+
+app.get('/Education/Problem', education.grid);
+app.get('/Education/Common', education.grid);
+app.get('/Education/Healing', education.grid);
+
+app.get('/freestyle/property', freestyle.grid);
+app.get('/freestyle/tip', freestyle.grid);
+app.get('/freestyle/qna', freestyle.grid);
 
 app.post('/upload',user.upload);
 

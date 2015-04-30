@@ -1,0 +1,38 @@
+
+<% include layout/header.ejs %>
+<% include layout/content.ejs %>
+	
+<div class="container">
+	<h1>LIST PAGE</h1>
+	<a href="/insert">insert data</a>
+	<hr/>
+	<table class="list-board">
+		<tr>
+			<th>id</th>
+			<th>name</th>
+			<th>model number</th>
+			<th>series</th>
+			<th>delete</th>
+			<th>edit</th>
+		</tr>
+		<% data.forEach(function (item, index) { %>
+		<tr>
+			<td><%= item.id %></td>
+			<td><%= item.name %></td>
+			<td><%= item.modelnumber %></td>
+			<td><%= item.series %></td>
+			<td><a href="/delete/<%= item.id %>">delete </a></td>
+			<td><a href="/edit/<%= item.id %>">edit </a></td>
+		</tr>
+		<% }); %>
+	</table>
+	<a href="/grid" >go grid </a>
+	<hr />
+	<a href='javascript:fn_move();'>move</a>
+<div>
+<script>
+function fn_move(){
+	alert("dddd");
+};
+</script>	
+<% include layout/foot.ejs %>	
