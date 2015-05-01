@@ -3,24 +3,23 @@
 	
 <div class="container">
 	<h1>CONTENT PAGE</h1>
-	<a href="javascript:history.back()"><button>목록</button></a>
+	<button><a href="/AngelWing/Angel">목록</a></button>
 	<hr/>
 	<table class="list-board">
-		<% data.forEach(function (item, index) { %>
 			<tr>
-				<th><%= item.title %></th>
-				<th style="width:13%;"><%= item.regdate %></th>
-				<th style="width:10%;">조회수<%= item.hit %></th>
+				<th><%= data.title %></th>
+				<th style="width:13%;"><%= data.regdate %></th>
+				<th style="width:10%;">조회수<%= data.hit %></th>
 			</tr>
 			<tr>
-				<th colspan="3"   style="text-align: left;" ><%= item.writer %></th>
+				<th colspan="3"   style="text-align: left;" ><%= data.writer %></th>
 			</tr>
 			<tr>
-				<th colspan="3"  style="height : 300px;"><%= item.content %></th>
+				<th colspan="3"  style="height : 300px;"><%= data.content %></th>
 			</tr>
-		<% }); %>
 	</table>
-	<button>글 쓰기</button>
+			<button><a href="/angel/angeledit?idx=<%=data.idx %>">수정</a></button>
+			<button><a href="/angel/angeldel?idx=<%=data.idx %>">삭제</a></button>
 	<hr />
 <div>
 <script>

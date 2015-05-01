@@ -123,6 +123,10 @@ app.post('/admin/updataMainImg', admin.updataMainImg);
 
 app.get('/AngelWing/Angel', angelwing.list);
 app.get('/angelwing/angledetail' ,angelwing.content);
+app.get('/angel/angeledit' , angelwing.gedit);
+app.post('/angel/angeledit' , angelwing.pedit);
+app.get('/angel/angeldel', angelwing.del);
+
 
 app.get('/AngelWing/Wing', angelwing.grid);
 app.get('/AngelWing/Event', angelwing.grid);

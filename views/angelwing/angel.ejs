@@ -17,7 +17,7 @@
 		<% data.forEach(function (item, index) { %>
 		<tr>
 			<td><input type="hidden" value="<%= item.idx %>" /> <%= index+1 %></td>
-			<td><a href="/angelwing/angledetail?id=<%= item.idx %>" 
+			<td><a href="/angelwing/angledetail?idx=<%= item.idx %>&hit=<%= item.hit %>" 
 			onclick="fn_showContent(<%= item.idx %>);"><%= item.title %></a></td>
 			<td><%= item.writer %></td>
 			<td><%= item.regdate %></td>

@@ -1,0 +1,34 @@
+
+<% include ../layout/header.ejs %>
+	
+<div class="container">
+	<h1>CONTENT PAGE</h1>
+	<button><a href="javascript:history.back()">목록</a></button>
+	<hr/>
+	<form method="post" action='/angel/angeledit'>
+		<table class="list-board">
+				<tr>
+					<th><input type="text" value='<%= data.title %>' name="title" /></th>
+					<th style="width:13%;"><%= data.regdate %></th>
+					<th style="width:10%;">조회수<%= data.hit %></th>
+				</tr>
+				<tr>
+					<th colspan="3" style="text-align: left;" ><%= data.writer %></th>
+				</tr>
+				<tr>
+					<th colspan="3"  style="height : 300px;"><input type="text" value='<%= data.content %>' 
+					name="content" /></th>
+				</tr>
+		</table>
+			<input type="hidden" name="hit" value="<%= data.idx %>" />
+			<input type="hidden" name="idx" value="<%= data.hit %>" />
+			<input type="submit" value="완료" />
+	</form>
+			<button><a href="/angel/angeldel?idx=<%=data.idx %>">삭제</a></button>
+	<hr />
+<div>
+<script>
+function fn_showContent(idx){
+	alert("dddd");
+};
+</script>	

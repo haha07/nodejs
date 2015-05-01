@@ -48,27 +48,68 @@ exports.list = function(req, res){
 };
 
 exports.content = function(req,res){
-	var id = req.query.id;
-	console.log(id);
+	var idx = req.query.idx;
+	var hit = Number(req.query.hit)+1;
+	console.log(hit);
 	req.getConnection(function(error,connection){
-		connection.query('SELECT * FROM angel where idx = ?', [id] , function(error,result){
-			console.log(result);
-			res.render("angelwing/angledetail" ,{
-				data:result
+		connection.query('update angel set hit =? where idx =?',[hit,idx],function(){
+			console.log('UPDATE SUCCESS');
+		});
+	});
+	
+	req.getConnection(function(error,connection){
+		connection.query('SELECT * FROM angel where idx = ?', [idx] , function(error,result){
+			res.render("angelwing/angledetail", {
+				data:result[0]
 			});
 		});
 	});
 };
 
 
-exports.delet = function(req, res){
-	var id = req.params.id;
+exports.del = function(req, res){
+	var idx = req.query.idx;
 	req.getConnection(function(error,connection){
-		connection.query('delete from product where ID = ?',[id],function(){
-			res.redirect('/list');
+		connection.query('delete from angel where idx = ?',[idx],function(){
+			res.redirect('/Angelwing/Angel');
 		});
 	});
 };
+
+exports.gedit = function(req,res){
+    var idx = req.query.idx;
+	req.getConnection(function(error,connection){
+		connection.query('select * from angel where idx=?',[idx],function(error,result){
+		res.render("angelwing/angelEdit",{
+				data:result[0]
+			});
+		});
+   });
+};
+
+exports.pedit = function(req,res){
+	var body = req.body;
+	console.log(body);
+	req.getConnection(function(error,connection){
+		connection.query('update angel set title=?,content=? where idx=?',[
+		         body.title,body.content,body.idx],function(){
+		            res.redirect('/angelwing/angledetail?idx='+body.idx);
+		  });
+	});
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 exports.ginsert = function(req,res){
 	res.render("insert");
@@ -83,27 +124,7 @@ exports.pinsert = function(req,res){
 	});
 };
 
-exports.gedit = function(req,res){
-    var id = req.params.id;
-	req.getConnection(function(error,connection){
-		connection.query('select * from product where id=?',[id],function(error,result){
-		res.render("edit",{
-				data:result[0]
-			});
-		});
-   });
-};
 
-exports.pedit = function(req,res){
-	var id = req.params.id;
-	var body = req.body;
-	req.getConnection(function(error,connection){
-		connection.query('update product set name=?,modelnumber=?,series=? where id=?',[
-		         body.name,body.modelnumber,body.series,id],function(){
-		            res.redirect('/list');
-		  });
-	});
-};
 
 var fs = require('fs');
 exports.upload = function(req,res){
