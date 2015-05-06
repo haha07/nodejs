@@ -4,34 +4,33 @@
 	
 <div class="container">
 	<h1>LIST PAGE</h1>
-	<a href="/insert"><button>글 쓰기</button></a>
-	<hr/>
 	<table class="list-board">
-		<tr>
-			<th style="width:5%;">순번</th>
-			<th>제목</th>
-			<th style="width:10%;">작성자</th>
-			<th style="width:13%;">등록일</th>
-			<th style="width:5%;">조회수</th>
-		</tr>
-		<% data.forEach(function (item, index) { %>
-		<tr>
-			<td><input type="hidden" value="<%= item.idx %>" /> <%= index+1 %></td>
-			<td><a href="/angelwing/angledetail?idx=<%= item.idx %>&hit=<%= item.hit %>" 
-			onclick="fn_showContent(<%= item.idx %>);"><%= item.title %></a></td>
-			<td><%= item.writer %></td>
-			<td><%= item.regdate %></td>
-			<td><%= item.hit %></td>
-		</tr>
-		<% }); %>
+		<thead>
+			<tr>
+				<th style="width:5%;">번호</th>
+				<th>제목</th>
+				<th style="width:10%;">글쓴이</th>
+				<th style="width:13%;">등록일</th>
+				<th style="width:5%;">조회</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% data.forEach(function (item, index) { %>
+			<tr>
+				<td><input type="hidden" value="<%= item.idx %>" /> <%= index+1 %></td>
+				<td style="text-align:left;padding:3px 5px;"><a href="/angelwing/angledetail?idx=<%= item.idx %>&hit=<%= item.hit %>" onclick="fn_showContent(<%= item.idx %>);"><%= item.title %></a></td>
+				<td><%= item.writer %></td>
+				<td><%= item.regdate %></td>
+				<td><%= item.hit %></td>
+			</tr>
+			<% }); %>
+		</tbody>
 	</table>
-	
+	<div style="float:right;margin:7px 0 0"><a href="/insert"><button>글 쓰기</button></a></div>
 	<a href="/grid" >go grid </a>
-	<hr />
-	
 <div>
 <script>
-function fn_showContent(idx){
-	alert("dddd");
-};
+	function fn_showContent(idx){
+		alert("dddd");
+	};
 </script>	

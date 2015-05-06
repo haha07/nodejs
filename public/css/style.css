@@ -56,7 +56,7 @@ h1,h2, h3, h4, h5, h6 {
 
 
 .row,.row-fluid {
-	margin-bottom:30px;
+	
 }
 
 .row .row,.row-fluid .row-fluid{
@@ -104,9 +104,16 @@ header .navbar {
     margin-bottom: 0;
 }
 
-.navbar-default {
-    border: none;
+.navbar {
+	margin-bottom: 0;
 }
+
+.navbar-default {
+    border:none;
+    background:none;
+}
+
+.navbar-static-top {}
 
 .navbar-brand {
     color: #222;
@@ -115,7 +122,7 @@ header .navbar {
     font-weight: 700;
     line-height: 1em;
 	letter-spacing: -1px;
-    margin-top: 30px;
+    margin-top: 20px;
     padding: 0 0 0 15px;
 }
 
@@ -195,10 +202,9 @@ header .nav .caret {
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-  background-color:  #fff;
-  border-color:#68A4C4;
-  border-top:1px solid #68A4C4;
-  border-left:1px solid #68A4C4;
+  background-color:#fff;
+  border-top:none;
+  border-color:#DDD;
 }	
 	
 
@@ -270,8 +276,6 @@ header ul.nav li ul li a {
 
 .navbar .nav li .dropdown-menu {
 	z-index:2000;
-	border:1px solid #68A4C4;
-	margin:-1px 0 0 0;
 	padding:0;
 }
 
@@ -327,7 +331,7 @@ ul.nav li.dropdown a {
 
 #featured .flexslider {
 	padding:0;
-	margin: 50px 0 30px; 
+	margin: 0; 
 	background: #fff; 
 	position: relative; 
 	zoom: 1;
@@ -344,8 +348,9 @@ ul.nav li.dropdown a {
 7. Section: call action
 ==================================== */
 section.callaction {
-	background:#f9f9f9;
-	padding:50px 0 0 0;
+	background:#f8f8f8;
+	border-top:1px solid #EEE;
+	border-bottom:1px solid #EEE;
 }
 
 
@@ -357,7 +362,7 @@ section.callaction {
 #content {
 	position:relative;
 	background:#fff;
-	padding:50px 0 40px 0;
+	padding:0;
 }
 
 #content img {
@@ -369,7 +374,6 @@ section.callaction {
 
 .cta-text {
 	text-align: center;
-	margin-top:10px;
 }
 
 
@@ -461,7 +465,7 @@ section.callaction {
 
 /* --- breadcrumbs --- */
 #inner-headline ul.breadcrumb {
-	margin:30px 0 0;
+	margin:0;
 	float:left;
 }
 
@@ -1981,9 +1985,24 @@ article img.pull-right, article .align-right{
 
 }
 
-.list-board {width:100%}
+.dashboard {background:#F8F8F8;border-top:1px solid #EEE;border-bottom:1px solid #EEE}
+.dashboard .container p {padding:3px 25px;margin:0;text-align:right;font-size:12px;font-family:Dotum}
+
+.navbar-brand {margin-left:0 !important}
+
+.navbar .nav li .dropdown-menu {background:#68A4C4;min-width:0;top:150%;left:0;border-radius:7px;}
+.navbar .nav li .dropdown-menu li {display:table-cell;}
+.navbar .nav li .dropdown-menu li:hover {background:none;}
+.navbar .nav li .dropdown-menu li a {border:none;color:#FFF}
+.navbar .nav li .dropdown-menu li a:hover {color:#FF0 !important;}
+
+.list-board {width:100%;font-size:12px;}
 .list-board th,
-.list-board td {border:1px solid #BBB;text-align:center}
+.list-board td {text-align:center}
+.list-board thead {border-top:2px solid #68A4C4;border-bottom:1px solid #DDD}
+.list-board thead th {background-color:#FAFAFA;padding:5px 0}
+.list-board tbody tr {border-bottom:1px solid #EEE}
+.list-board tbody td {padding:3px 0;}
 
 .insert-table td {text-align:right;padding:5px}
 .insert-table input {border:1px solid #AAA}

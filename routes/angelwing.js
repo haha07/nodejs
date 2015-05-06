@@ -1,14 +1,10 @@
-
 /*
  * GET users listing.
  */
 
-
-
 exports.grid = function(req,res){
 	res.render("grid");
 };
-
 
 exports.pgrid = function(req,res){
 	var rows = req.query.rows;
@@ -34,7 +30,7 @@ exports.pgrid = function(req,res){
 exports.list = function(req, res){
 	if(req.session.email != "" && req.session.email != undefined) {
 		req.getConnection(function(error,connection){
-			connection.query('SELECT * FROM angel',function(error,results){
+			connection.query('SELECT idx, title, content, writer, hit, DATE_FORMAT(regdate, "%Y-%m-%d") AS regdate FROM angel',function(error,results){
 				res.render("angelwing/angel",{
 					data:results
 				});
@@ -98,19 +94,6 @@ exports.pedit = function(req,res){
 	});
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 exports.ginsert = function(req,res){
 	res.render("insert");
 };
@@ -123,8 +106,6 @@ exports.pinsert = function(req,res){
 		});
 	});
 };
-
-
 
 var fs = require('fs');
 exports.upload = function(req,res){
