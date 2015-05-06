@@ -8,7 +8,7 @@
 	<form method="post" action='/angel/angeledit'>
 		<table class="list-board">
 				<tr>
-					<th><input type="text" value='<%= data.title %>' name="title" /></th>
+					<th><input type="text" value='<%= data.title %>' name="title" style="width:100%;"/></th>
 					<th style="width:13%;"><%= data.regdate %></th>
 					<th style="width:10%;">조회수<%= data.hit %></th>
 				</tr>
@@ -17,7 +17,7 @@
 				</tr>
 				<tr>
 					<th colspan="3"  style="height : 300px;"><input type="text" value='<%= data.content %>' 
-					name="content" /></th>
+					name="content" style="width:100%; height:100%"/></th>
 				</tr>
 		</table>
 			<input type="hidden" name="hit" value="<%= data.idx %>" />
