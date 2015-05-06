@@ -74,12 +74,12 @@
 	   				<tfoot>
 		   				<tr>
 		   					<th colspan="5">
-								<form method="post" action="/admin/uploadMainImg" enctype="multipart/form-data">
-									<input type="file" name="uploadFile" />
+								<form method="post" action="/admin/uploadMainImg" enctype="multipart/form-data" style="width:84%;" id="submitFile">
+									<input type="file" name="uploadFile" id="uploadFile" />
 				   					<input type="text" name="title" placeholder="제목" />
 				   					<input type="text" name="paragraph" placeholder="내용" />
-					   				<input type="submit" name="upload" value="파일올리기" class="file-submit" />
 				   				</form>
+					   				<span style="float:right; position:relative; margin-top:-21px;"><input type="button" onclick="fn_upload()" value="파일올리기" class="file-submit" /></span>
 							</th>
 		   				</tr>
 	   				</tfoot>
@@ -140,6 +140,16 @@
 				 });
    			}
    		}
+   		
+   		function fn_upload(){
+   			if($("#uploadFile").val() == null || $("#uploadFile").val() == "" ){
+   					alert("파일을 선택하세요.");
+   					return;
+   			}else{
+   				$("#submitFile").submit();
+   			}
+		   		
+   		};
    	</script>
   </body>
 </html>
